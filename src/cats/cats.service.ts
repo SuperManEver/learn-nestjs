@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
+import { CreateCatDto } from './dto/create-cat.dto';
 
 const CATS = ['Seymor', 'Alan'];
 
 @Injectable()
-class CatsService {
+export class CatsService {
   findAll(): string[] {
     return CATS;
   }
@@ -13,6 +14,12 @@ class CatsService {
 
     return `This cat returns a #${id} article`;
   }
-}
 
-export { CatsService };
+  create(createCatDto: CreateCatDto) {
+    const { name, age } = createCatDto;
+
+    console.log(`New cat ${name} with ${age}`);
+
+    return createCatDto;
+  }
+}
